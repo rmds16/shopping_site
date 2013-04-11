@@ -1,0 +1,25 @@
+<h1>Basket</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Unit Price</th>
+    <th>Oty</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+
+<% @basket_items.each do |basket_item| %>
+  <tr>
+    <td><%= basket_item.item.name %></td>
+    <td><%= basket_item.item.price %></td>
+    <td><%= basket_item.qty %></td>
+    <td><%= basket_item.price %></td>
+  </tr>
+<% end %>
+
+<tr>
+ <td colspan="3"></td>
+ <td>Total price:</td>
+ <td><%= @basket.price %></td>
+</table>

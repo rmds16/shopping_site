@@ -1,0 +1,5 @@
+<%= provide(:title, @item.name) %>
+<h1><%= @item.name %></h1>
+<span class="item-description"><%= @item.description %></span>
+<span class="item-price pull-left">Price: £<%= sprintf("%.02f", @item.price) %></span>
+<%= button_to 'Add to Basket' , basket_items_path(:item_id => @item), :class => "btn pull-right" %>    
