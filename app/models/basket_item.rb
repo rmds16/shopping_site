@@ -3,8 +3,9 @@ class BasketItem < ActiveRecord::Base
   belongs_to :item
   belongs_to :basket
 
-  validates :item_id, presence: true, uniqueness: true
+  validates :item_id, presence: true
   validates :basket_id, presence: true
+  validates_uniqueness_of :item_id, :scope => [:basket_id]
 
   def price
      item.price * qty

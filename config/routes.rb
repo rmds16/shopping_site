@@ -1,6 +1,17 @@
 ShoppingSite::Application.routes.draw do
   resources :items
   resources :basket_items
+  resources :user_sessions
+
+  root to: "items#index"
+
+  match 'signin' => "user_sessions#new",      :as => :signin
+  match 'signout' => "user_sessions#destroy", :as => :signout
+
+  resources :users 
+  resource :user, :as => 'account'
+
+  match 'signup', to:'users#new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

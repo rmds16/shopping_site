@@ -1,6 +1,6 @@
 <h1>Basket</h1>
 
-<table>
+<table class="basket">
   <tr>
     <th>Item</th>
     <th>Unit Price</th>
@@ -12,14 +12,14 @@
 <% @basket_items.each do |basket_item| %>
   <tr>
     <td><%= basket_item.item.name %></td>
-    <td><%= basket_item.item.price %></td>
+    <td>£<%= sprintf("%0.2f", basket_item.item.price) %></td>
     <td><%= basket_item.qty %></td>
-    <td><%= basket_item.price %></td>
+    <td>£<%= sprintf("%0.2f",basket_item.price) %></td>
   </tr>
 <% end %>
 
 <tr>
- <td colspan="3"></td>
+ <td colspan="2"></td>
  <td>Total price:</td>
- <td><%= @basket.price %></td>
+ <td>£<%= sprintf("%0.2f", @basket.price) %></td>
 </table>

@@ -4,9 +4,24 @@
    <%= link_to "Shopping Site", '#', id: "logo" %>
    <nav>
     <ul class="nav pull-right">
-     <li><%= link_to "Home", items_url %>
-     <li><%= link_to "Basket", basket_items_url %>
-     <li><%= link_to "Sign in", '#' %></li>
+     <li><%= link_to "Home", items_url %></li>
+     <li><%= link_to "Basket", basket_items_url %></li>
+     <% if current_user_session %>
+     <li id="fat-menu" class="dropdown">
+      <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+       Account <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+       <li><%= link_to "Profile", current_user %></li>
+       <li class="divider"></li>
+       <li>
+        <%= link_to "Sign out", signout_path, method: "delete" %>
+       </li>
+      </ul>
+     </li>
+      <% else %>
+     <li><%= link_to "Sign in", signin_path %></li>
+     <% end %>
     </ul>
    </nav>
   </div>
