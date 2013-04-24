@@ -1,0 +1,54 @@
+<h5>Delivery Address</h5>
+
+<%= form_for(@order) do |f| %>
+<%= render 'shared/error_messages', :target => @address %>
+<%= f.radio_button :existing_address, "1", :onclick => "$('#new_address').hide()" %> Use existing address
+
+<%= f.collection_select(:address_id, @addresses, :id, :first_name) %>
+
+<%= f.radio_button :existing_address, "0", :onclick => "$('#new_address').show()" %> Add new address
+
+  <div id="new_address" <% if @order.existing_address == "1" %>style="display: none;"<% end %>>
+  <%= fields_for :address do |a| %>
+  <div class="field">
+    <%= a.label :first_name %><br />
+    <%= a.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= a.label :last_name %><br />
+    <%= a.text_field :last_name %>
+  </div>
+  <div>
+    <%= a.label :organisation %><br />
+    <%= a.password_field :organisation %>
+  </div>
+  <div>
+    <%= a.label :building %><br />
+    <%= a.text_field :building %>
+  </div>
+  <div>
+    <%= a.label :street %><br />
+    <%= a.text_field :street %>
+  </div>
+  <div>
+    <%= a.label :town %><br />
+    <%= a.password_field :town %>
+  </div>
+  <div>
+    <%= a.label :county %><br />
+    <%= a.password_field :county %>
+  </div>
+  <div>
+    <%= a.label :post_code %><br />
+    <%= a.text_field :post_code %>
+  </div>
+  <div>
+   <%= a.label :country %><br />
+   <%= a.text_field :country %>
+  </div>
+  <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

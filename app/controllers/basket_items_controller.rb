@@ -9,7 +9,7 @@ class BasketItemsController < ApplicationController
     @basket = current_basket
     @basket_item = @basket.add_item(params[:item_id])
     @basket_item.save
-    redirect_to items_url, notice: 'Basket item was successfully created.'
+    redirect_to basket_items_url
   end
 
   def destroy

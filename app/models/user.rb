@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
+  has_many :addresses, dependent: :destroy
+  has_many :orders
   acts_as_authentic do |c|
   end
 

@@ -1,7 +1,15 @@
 ShoppingSite::Application.routes.draw do
+
+  resources :payments
+
+
+  get "order_items/new"
+
   resources :items
   resources :basket_items
   resources :user_sessions
+  resources :addresses
+  resources :orders
 
   root to: "items#index"
 

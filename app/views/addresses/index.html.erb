@@ -1,0 +1,24 @@
+<% provide(:title, 'All Addresses') %>
+<h1>Address</h1>
+
+<%= form_for @order do |f| %>
+<ul class="items">
+ <% @addresses.each do |address| %>
+ <li>
+  <span class="content"><%= radio_button_tag "address_id", address.id %></span>
+  <span class="content"><%= address.title %><%= address.first_name %><%= address.last_name %></span>
+  <span class="content"><%= address.organisation %></span>
+  <span class="content"><%= address.building %><%= address.street %></span>
+  <span class="content"><%= address.town %></span>
+  <span class="content"><%= address.county %></span>
+  <span class="content"><%= address.post_code %></span>
+  <span class="content"><%= address.country %></span>
+  <span class="content"><%= address.phone %></span>
+  <%= link_to "Edit", edit_address_path(address), :class => "btn pull-right", :method => :get %>
+  <%= link_to "Delete", address_path(address), :class => "btn pull-right", :method => :delete %>
+ </li>
+ <% end %>
+</ul>
+<%= f.submit "Continue", :class => 'btn pull-right' %>
+<% end %>
+<%= link_to "Add new address", new_address_path %>

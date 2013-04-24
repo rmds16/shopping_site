@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411154341) do
+ActiveRecord::Schema.define(:version => 20130418142704) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "organisation"
+    t.string   "building"
+    t.string   "street"
+    t.string   "town"
+    t.string   "city"
+    t.string   "county"
+    t.string   "post_code"
+    t.string   "country"
+    t.string   "phone"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "user_id"
+  end
 
   create_table "basket_items", :force => true do |t|
     t.integer  "item_id"
@@ -30,6 +48,31 @@ ActiveRecord::Schema.define(:version => 20130411154341) do
     t.string   "name"
     t.string   "description"
     t.float    "price"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "order_items", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "order_id"
+    t.integer  "qty"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "address_id"
+    t.integer  "stage",      :default => 0
+    t.integer  "user_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "order_id"
+    t.string   "card_type"
+    t.date     "expiry_date"
+    t.integer  "address_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_basket, :current_user_session, :current_user
+  helper_method :current_basket, :current_order, :current_user_session, :current_user
 
   private
     def current_basket
@@ -9,7 +9,14 @@ class ApplicationController < ActionController::Base
         basket = Basket.create
         session[:basket_id] = basket.id
         basket
-      end
+    end
+
+    def current_order
+      Order.find(session[:order_id])
+      rescue ActiveRecord::RecordNotFound
+        order = Order.create
+        session[:order_id] = order.id
+        order
     end
 
     def current_user_session
@@ -30,3 +37,4 @@ class ApplicationController < ActionController::Base
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
+end

@@ -1,0 +1,50 @@
+<% provide(:title, 'New Address') %>
+
+<h1>New Address</h1>
+<%= render "shared/error_messages", :target => @address %>
+<p>
+<%= form.label :title %><br />
+<%= form.text_field :title %>
+</p>
+<p>
+<%= form.label :first_name %><br />
+<%= form.text_field :first_name %>
+</p>
+<p>
+<%= form.label :last_name %><br />
+<%= form.password_field :last_name %>
+</p>
+<p>
+<%= form.label :organisation %><br />
+<%= form.password_field :organisation %>
+</p>
+<p>
+<%= form.label :building %><br />
+<%= form.text_field :building %>
+</p>
+<p>
+<%= form.label :street %><br />
+<%= form.text_field :street %>
+</p>
+<p>
+<%= form.label :town %><br />
+<%= form.password_field :town %>
+</p>
+<p>
+<%= form.label :county %><br />
+<%= form.password_field :county %>
+</p>
+<p>
+<%= form.label :post_code %><br />
+<%= form.text_field :post_code %>
+</p>
+<p>
+<%= form.label :country %><br />
+<%= form.text_field :country %>
+</p>
+<p>
+<%= form.label :phone %><br />
+<%= form.password_field :phone %>
+</p>
+<%= form.submit "Add Address" %> 
+<% end %>

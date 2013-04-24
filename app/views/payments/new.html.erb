@@ -1,0 +1,93 @@
+
+<h3>Order Details</h3>
+
+<%= render 'order' %>
+
+ <p>Deliver to:</p>
+
+<ul>
+ <li class="content"><%= current_order.address.title %><%= current_order.address.first_name %><%= current_order.address.last_name %></li>
+ <li class="content"><%= current_order.address.organisation %></li>
+ <li class="content"><%= current_order.address.building %><%= current_order.address.street %></li>
+ <li class="content"><%= current_order.address.town %></li>
+ <li class="content"><%= current_order.address.county %></li>
+ <li class="content"><%= current_order.address.post_code %></li>
+ <li class="content"><%= current_order.address.country %></li>
+ <li class="content"><%= current_order.address.phone %></li>
+</ul>
+
+<%= form_for(@payment) do |f| %>
+<%= render 'shared/error_messages', :target => @payment %>
+<h3>Card Details</h3>
+
+  <div class="field">
+    <%= f.label :card_type %><br />
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  </div>
+  <div class="field">
+    <%= f.label :card_number %><br />
+    <%= f.text_field :card_number %>
+  </div>
+  <div class="field">
+    <%= f.label :expiry_date %><br />
+    <%= f.date_select :expiry_date, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+  </div>
+  <div class="field">
+    <%= f.label :verification_value, 'CVS' %><br />
+    <%= f.text_field :verification_value %>
+  </div>
+
+  <h5>Billing Address - This is the address where your payment card is registered</h5>
+
+  <%= f.radio_button :existing_address, "1", :onclick => "$('#new_address').hide()" %> Use existing address
+
+  <%= f.collection_select(:address_id, @addresses, :id, :first_name) %>
+
+  <%= f.radio_button :existing_address, "0", :onclick => "$('#new_address').show()" %> Add new address
+
+  <div id="new_address" <% if @payment.existing_address == "1" %>style="display: none;"<% end %>>
+  <%= fields_for :address do |a| %>
+  <%= render 'shared/error_messages', :target => @address %>
+  <div class="field">
+    <%= a.label :first_name %><br />
+    <%= a.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= a.label :last_name %><br />
+    <%= a.text_field :last_name %>
+  </div>
+  <div>
+    <%= a.label :organisation %><br />
+    <%= a.password_field :organisation %>
+  </div>
+  <div>
+    <%= a.label :building %><br />
+    <%= a.text_field :building %>
+  </div>
+  <div>
+    <%= a.label :street %><br />
+    <%= a.text_field :street %>
+  </div>
+  <div>
+    <%= a.label :town %><br />
+    <%= a.password_field :town %>
+  </div>
+  <div>
+    <%= a.label :county %><br />
+    <%= a.password_field :county %>
+  </div>
+  <div>
+    <%= a.label :post_code %><br />
+    <%= a.text_field :post_code %>
+  </div>
+  <div>
+   <%= a.label :country %><br />
+   <%= a.text_field :country %>
+  </div>
+  <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', payments_path %>
