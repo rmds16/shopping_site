@@ -1,0 +1,17 @@
+<h1>Order History</h1>
+
+<table class="order">
+ <tr>
+  <th>Date</th>
+  <th>Price</th>
+  <th></th>
+ </tr>
+
+<% @orders.each do |order| %>
+ <tr>
+  <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+  <td>£<%= sprintf("%0.2f", order.price) %></td>
+  <td><%= button_to "More Details", order, :class=>"btn pull-right", :method => :get %>
+ </tr>
+<% end %>
+</table>

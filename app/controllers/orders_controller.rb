@@ -37,4 +37,12 @@ class OrdersController < ApplicationController
       render 'new'
     end
   end
+
+  def index
+    @orders = current_user.orders
+  end
+
+  def show
+    @payment = current_order.payments.first
+  end
 end

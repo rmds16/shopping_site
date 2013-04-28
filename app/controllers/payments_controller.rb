@@ -9,6 +9,10 @@ class PaymentsController < ApplicationController
   end
 
   def create
+    unless current_order.stage.zero?
+      redirect_to orders_path
+      return
+    end
     @payment = current_order.payments.new(params[:payment])
     if @payment.existing_address == "new"
       @address = Address.new(params[:address])

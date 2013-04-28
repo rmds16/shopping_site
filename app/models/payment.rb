@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  attr_accessor :card_number, :verification_value, :existing_address
+  attr_accessor :verification_value, :existing_address
   attr_accessible :card_type, :expiry_date, :address_id, :card_number, :verification_value, :existing_address
   belongs_to :address
   belongs_to :order
@@ -23,9 +23,9 @@ class Payment < ActiveRecord::Base
                                                             :year               => self.expiry_date.year,
                                                             :verification_value => self.verification_value
                                                            )
+      self.card_number = credit_card.display_number
       if credit_card.valid?
         response = GATEWAY.purchase(price_in_pence, credit_card)
-        self.card_number = credit_card.display_number
         unless response.success?
           self.errors.add :base, "Card Declined"
         end

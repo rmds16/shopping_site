@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1>Please sign in</h1>
 <%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
   <%= render "shared/error_messages", :target => @user_session %>
   <%= f.label :email %><br />
@@ -9,6 +9,6 @@
   <br />
   <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
   <br />
-  <%= f.submit "Login" %>
+  <%= f.submit "Login", :class => "btn btn-large btn-primary" %>
 <% end %>
-<%= button_to "Register", signup_path %>
+<%= button_to "Register", signup_path, :class=>"btn btn-large btn-success" %>

@@ -10,7 +10,7 @@ class Ability
       u == user
     end
  
-    can [:show], Order do |order|
+    can [:show, :index], Order do |order|
       order && order.user == user
     end
 

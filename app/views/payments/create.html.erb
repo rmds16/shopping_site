@@ -2,35 +2,6 @@
 
 <h3>Order Summary</h3><br/>
 
-<%= render 'order' %>
+<%= render 'orders/order' %>
 
-<h5>Delivery Address:</h5>
-<ul>
- <li class="content"><%= @payment.order.address.title %><%= @payment.order.address.first_name %><%= @payment.order.address.last_name %></li>
- <li class="content"><%= @payment.order.address.organisation %></li>
- <li class="content"><%= @payment.order.address.building %><%= @payment.order.address.street %></li>
- <li class="content"><%= @payment.order.address.town %></li>
- <li class="content"><%= @payment.order.address.county %></li>
- <li class="content"><%= @payment.order.address.post_code %></li>
- <li class="content"><%= @payment.order.address.country %></li>
- <li class="content"><%= @payment.order.address.phone %></li>
-</ul>
-<br>
-<h5>Payment Details:</h5>
-
-<p>Card Type: <%= @payment.card_type %></p>
-<p>Card Number: <%= @payment.card_number %></p>
-<p>Expiry Date: <%= @payment.expiry_date.month %> <%= @payment.expiry_date.year %></p>
-<br>
-<h5>Billing Address:</h5>
-<ul>
- <li class="content"><%= @payment.address.title %><%= @payment.address.first_name %><%= @payment.address.last_name %></li>
- <li class="content"><%= @payment.address.organisation %></li>
- <li class="content"><%= @payment.address.building %><%= @payment.address.street %></li>
- <li class="content"><%= @payment.address.town %></li>
- <li class="content"><%= @payment.address.county %></li>
- <li class="content"><%= @payment.address.post_code %></li>
- <li class="content"><%= @payment.address.country %></li>
- <li class="content"><%= @payment.address.phone %></li>
-</ul>
-
+<%= render 'payment', payment: @payment %>
