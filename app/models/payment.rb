@@ -18,7 +18,7 @@ class Payment < ActiveRecord::Base
                                                             :first_name         => self.address.first_name,
                                                             :last_name          => self.address.last_name,
                                                             :number             => self.card_number,
-                                                            :type               => self.card_type,
+                                                            :brand              => self.card_type,
                                                             :month              => self.expiry_date.month,
                                                             :year               => self.expiry_date.year,
                                                             :verification_value => self.verification_value

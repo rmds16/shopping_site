@@ -5,11 +5,11 @@ class Ability
     user ||= User.new
 
     can [:new, :create], :all
- 
+
     can [:show, :update], User do |u|
       u == user
     end
-
+ 
     can [:show], Order do |order|
       order && order.user == user
     end

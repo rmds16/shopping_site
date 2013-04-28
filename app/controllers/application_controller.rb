@@ -30,11 +30,19 @@ class ApplicationController < ActionController::Base
     end
 
     def store_location
-      session[:return_to] = request.request_uri
+      session[:return_to] = request.fullpath
     end
     
     def redirect_back_or_default(default)
       redirect_to(session[:return_to] || default)
       session[:return_to] = nil
     end
+
+    def signed_in_user
+      unless current_user
+        store_location
+        redirect_to signin_path
+      end
+    end
+
 end

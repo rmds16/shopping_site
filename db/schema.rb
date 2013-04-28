@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(:version => 20130418142704) do
   create_table "order_items", :force => true do |t|
     t.integer  "item_id"
     t.integer  "order_id"
-    t.integer  "qty"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "qty",        :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "orders", :force => true do |t|

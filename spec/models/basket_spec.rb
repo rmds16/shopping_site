@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Basket do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @basket = Basket.create
+  end
+
+  subject { @basket }
+
+  it { should be_valid }
+
 end

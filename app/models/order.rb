@@ -7,6 +7,9 @@ class Order < ActiveRecord::Base
   has_many :order_items
   accepts_nested_attributes_for :address
 
+  validates :address_id, :presence => true
+  validates :user_id, :presence => true
+
   def add_item(item_id)
     current_item = order_items.where(:item_id => item_id).first
     if current_item

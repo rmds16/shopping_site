@@ -2,14 +2,26 @@
 
 <%= form_for(@order) do |f| %>
 <%= render 'shared/error_messages', :target => @address %>
-<%= f.radio_button :existing_address, "1", :onclick => "$('#new_address').hide()" %> Use existing address
 
-<%= f.collection_select(:address_id, @addresses, :id, :first_name) %>
+<% if @addresses.size > 0 %>
 
-<%= f.radio_button :existing_address, "0", :onclick => "$('#new_address').show()" %> Add new address
+<%= f.radio_button :existing_address, "existing", :onclick => "$('#new_address').hide()" %> Use existing address
 
-  <div id="new_address" <% if @order.existing_address == "1" %>style="display: none;"<% end %>>
+<%= f.collection_select(:address_id, @addresses, :id, :full_address) %>
+
+<%= f.radio_button :existing_address, "new", :onclick => "$('#new_address').show()" %> Add new address
+
+<% else %>
+
+<%= f.hidden_field :existing_address %>
+
+<% end %>
+
+  <div id="new_address" <% if @order.existing_address == "existing" %>style="display: none;"<% end %>>
   <%= fields_for :address do |a| %>
+  <div class="field">
+    <%= a.select(:title, options_for_select(['Mr','Miss','Mrs','Ms'])) %>
+  </div>
   <div class="field">
     <%= a.label :first_name %><br />
     <%= a.text_field :first_name %>
@@ -20,7 +32,7 @@
   </div>
   <div>
     <%= a.label :organisation %><br />
-    <%= a.password_field :organisation %>
+    <%= a.text_field :organisation %>
   </div>
   <div>
     <%= a.label :building %><br />
@@ -32,11 +44,11 @@
   </div>
   <div>
     <%= a.label :town %><br />
-    <%= a.password_field :town %>
+    <%= a.text_field :town %>
   </div>
   <div>
     <%= a.label :county %><br />
-    <%= a.password_field :county %>
+    <%= a.text_field :county %>
   </div>
   <div>
     <%= a.label :post_code %><br />
@@ -49,6 +61,6 @@
   <% end %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Continue" %>
   </div>
 <% end %>
