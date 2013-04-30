@@ -1,6 +1,6 @@
-<h1>Basket</h1>
+<h2>Basket</h2>
 
-<table class="basket">
+<table class="basket" align="center">
   <tr>
     <th>Item</th>
     <th>Unit Price</th>
@@ -8,7 +8,6 @@
     <th>Price</th>
     <th></th>
   </tr>
-
 <% @basket_items.each do |basket_item| %>
   <tr>
     <td><%= basket_item.item.name %></td>
@@ -17,13 +16,17 @@
     <td>£<%= sprintf("%0.2f",basket_item.price) %></td>
   </tr>
 <% end %>
-
-<tr>
- <td colspan="2"></td>
- <td>Total price:</td>
- <td>£<%= sprintf("%0.2f", @basket.price) %></td>
-</tr>
-</table>
+  <tr>
+   <td colspan="2"></td>
+   <td>Total price:</td>
+   <td>£<%= sprintf("%0.2f", @basket.price) %></td>
+  </tr>
 <% if @basket_items.count > 0 %>
-<%= button_to "Checkout", new_order_path, :class => "btn pull-right", :method => :get %>
+  <tr>
+   <td><br/></td>
+  </tr>
+  <tr>
+   <td colspan="3"></td>
+   <td><%= button_to "Checkout", new_order_path, :class => "btn pull-right btn-primary", :method => :get %>
 <% end %>
+</table>

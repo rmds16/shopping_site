@@ -1,9 +1,13 @@
-<h1>Order History</h1>
+<h2>Order History</h2>
 
-<table class="order">
+<div class="row">
+ <div class="span8 offset2">
+
+<table class="order" align="center">
  <tr>
   <th>Date</th>
   <th>Price</th>
+  <th>Items</th>
   <th></th>
  </tr>
 
@@ -11,7 +15,11 @@
  <tr>
   <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
   <td>£<%= sprintf("%0.2f", order.price) %></td>
-  <td><%= button_to "More Details", order, :class=>"btn pull-right", :method => :get %>
+  <td><%= order.order_items.count %></td>
+  <td><%= button_to "More Details", order, :class=>"btn pull-right btn-primary", :method => :get %>
  </tr>
 <% end %>
 </table>
+
+ </div>
+</div>

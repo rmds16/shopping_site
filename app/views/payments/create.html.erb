@@ -1,7 +1,12 @@
-<h1>Thank you for your order</h1>
+<h2>Thank you for your order</h2>
 
-<h3>Order Summary</h3><br/>
+<div class="row">
+ <div class="span8 offset2">
 
 <%= render 'orders/order' %>
 
 <%= render 'payment', payment: @payment %>
+
+<%= button_to 'Continue Shopping' , items_path, :class => "btn pull-right btn-success", :method=> :get %>    
+ </div>
+</div>

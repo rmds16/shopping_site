@@ -1,11 +1,17 @@
 
-<h3>Order Details</h3>
+<h2>Order Details</h2>
 
-<%= render 'orders/order' %>
+<div class="row">
+ <div class="span8 offset2">
 
- <p>Deliver to:</p>
+  <%= render 'orders/order' %>
 
-<ul>
+  <br/>
+  <div class="payment_section">
+
+ <h5>Deliver to:</h5>
+
+<ul class="payment_address">
  <li class="content"><%= current_order.address.title %><%= current_order.address.first_name %><%= current_order.address.last_name %></li>
  <li class="content"><%= current_order.address.organisation %></li>
  <li class="content"><%= current_order.address.building %><%= current_order.address.street %></li>
@@ -16,28 +22,27 @@
  <li class="content"><%= current_order.address.phone %></li>
 </ul>
 
+  </div>
+
 <%= form_for(@payment) do |f| %>
 <%= render 'shared/error_messages', :target => @payment %>
-<h3>Card Details</h3>
+  <div class="payment_section">
+<h5>Card Details</h5><br/>
 
-  <div class="field">
+   <div class="card_details">
     <%= f.label :card_type %><br />
     <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
-  </div>
-  <div class="field">
     <%= f.label :card_number %><br />
-    <%= f.text_field :card_number %>
-  </div>
-  <div class="field">
+    <%= f.text_field :card_number, { :size => 16, :maxlength=>16 } %>
     <%= f.label :expiry_date %><br />
     <%= f.date_select :expiry_date, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
-  </div>
-  <div class="field">
     <%= f.label :verification_value, 'CVS' %><br />
-    <%= f.text_field :verification_value %>
+    <%= f.text_field :verification_value, {:size => 3, :maxlength=>3} %>
+   </div>
   </div>
+  <div class="payment_section">
 
-  <h5>Billing Address - This is the address where your payment card is registered</h5>
+  <h5>Billing Address - This is the address where your payment card is registered</h5><br />
 
   <%= f.radio_button :existing_address, "existing", :onclick => "$('#new_address').hide()" %> Use existing address
 
@@ -48,49 +53,30 @@
   <div id="new_address" <% if @payment.existing_address == "existing" %>style="display: none;"<% end %>>
   <%= fields_for :address do |a| %>
   <%= render 'shared/error_messages', :target => @address %>
-  <div class="field">
     <%= a.select(:title, options_for_select(['Mr','Miss','Mrs','Ms'])) %>
-  </div>
-  <div class="field">
     <%= a.label :first_name %><br />
     <%= a.text_field :first_name %>
-  </div>
-  <div class="field">
     <%= a.label :last_name %><br />
     <%= a.text_field :last_name %>
-  </div>
-  <div>
     <%= a.label :organisation %><br />
     <%= a.password_field :organisation %>
-  </div>
-  <div>
     <%= a.label :building %><br />
     <%= a.text_field :building %>
-  </div>
-  <div>
     <%= a.label :street %><br />
     <%= a.text_field :street %>
-  </div>
-  <div>
     <%= a.label :town %><br />
     <%= a.text_field :town %>
-  </div>
-  <div>
     <%= a.label :county %><br />
     <%= a.text_field :county %>
-  </div>
-  <div>
     <%= a.label :post_code %><br />
     <%= a.text_field :post_code %>
-  </div>
-  <div>
    <%= a.label :country %><br />
    <%= a.text_field :country %>
-  </div>
   <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit "Process Payment" %>
   </div>
+  <%= f.submit "Process Payment", :class=>"btn pull-right btn-primary" %>
 <% end %>
-<%= link_to 'Back', payments_path %>
+
+ </div>
+</div>

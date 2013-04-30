@@ -1,6 +1,7 @@
 <li>
- <span class="content"><%= link_to item.name, item %></span>
- <span class="content"><%= item.description %></span>
- <span class="content">Price: £<%= sprintf("%.02f", item.price) %></span>
- <%= button_to "More Details »", item, :class => "btn pull-right", :method => :get %>
+  <span class="content pull-left"><%= link_to item.name, item %><br/><br/>
+  <%= item.description[0..100] %>...</span>
+  <span class="content pull-right">
+  Price: £<%= sprintf("%.02f", item.price) %>
+  </span>
 </li>

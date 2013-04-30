@@ -1,5 +1,7 @@
-<h5>Delivery Address</h5>
+<h2>Delivery Address</h2>
 
+<div class="row">
+ <div class="span8 offset2">
 <%= form_for(@order) do |f| %>
 <%= render 'shared/error_messages', :target => @address %>
 
@@ -17,50 +19,31 @@
 
 <% end %>
 
-  <div id="new_address" <% if @order.existing_address == "existing" %>style="display: none;"<% end %>>
+  <div id="new_address" <% if @order.existing_address == "existing" %>style="display: none;"<% end %>><br/>
   <%= fields_for :address do |a| %>
-  <div class="field">
     <%= a.select(:title, options_for_select(['Mr','Miss','Mrs','Ms'])) %>
-  </div>
-  <div class="field">
-    <%= a.label :first_name %><br />
+    <%= a.label :first_name %>
     <%= a.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= a.label :last_name %><br />
+    <%= a.label :last_name %>
     <%= a.text_field :last_name %>
-  </div>
-  <div>
-    <%= a.label :organisation %><br />
+    <%= a.label :organisation %>
     <%= a.text_field :organisation %>
-  </div>
-  <div>
-    <%= a.label :building %><br />
+    <%= a.label :building %>
     <%= a.text_field :building %>
-  </div>
-  <div>
-    <%= a.label :street %><br />
+    <%= a.label :street %>
     <%= a.text_field :street %>
-  </div>
-  <div>
-    <%= a.label :town %><br />
+    <%= a.label :town %>
     <%= a.text_field :town %>
-  </div>
-  <div>
-    <%= a.label :county %><br />
+    <%= a.label :county %>
     <%= a.text_field :county %>
-  </div>
-  <div>
-    <%= a.label :post_code %><br />
+    <%= a.label :post_code %>
     <%= a.text_field :post_code %>
-  </div>
-  <div>
-   <%= a.label :country %><br />
+   <%= a.label :country %>
    <%= a.text_field :country %>
-  </div>
   <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit "Continue" %>
-  </div>
+  <br/><br/>
+  <%= f.submit "Continue", :class => "btn pull-right btn-primary"%>
 <% end %>
+ </div>
+</div>

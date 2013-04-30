@@ -1,5 +1,9 @@
-<h3>Order Summary</h3><br/>
+<h2>Order Summary</h2><br/>
 
-<%= render 'order' %>
-
-<%= render 'payments/payment', payment: @payment %>
+<div class="row">
+ <div class="span8 offset2">
+  <%= render 'order' %>
+  <br/>
+  <%= render 'payments/payment', payment: @payment %>
+ </div>
+</div>
