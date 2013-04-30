@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130418142704) do
   create_table "payments", :force => true do |t|
     t.integer  "order_id"
     t.string   "card_type"
+    t.string   "card_number"
     t.date     "expiry_date"
     t.integer  "address_id"
     t.datetime "created_at",  :null => false
