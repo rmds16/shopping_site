@@ -13,23 +13,26 @@ describe "BasketItems" do
   end
 
   describe "after adding an item to the basket" do
-    before do 
-      @basket = Basket.create
+    before do
       @item = FactoryGirl.create(:item)
-      @basket_item = @basket.add_item(@item.id)
+      visit item_path @item
     end
 
     it "should add a new basket_item" do
-      expect { @basket_item.save }.to change(BasketItem, :count).by(1)
-    end
-#    it { should have_selector('td', @item.name) }
-#    it { should have_selector('td', @basket_item.qty) }
-#    it { should have_selector('td', @item.price) }
-    before do
-      visit basket_items_path
+      expect { click_button "Add to Basket" }.to change(BasketItem, :count).by(1)
     end
 
-    it { should have_button('Checkout') }
+    describe "it should show the items in the basket" do
+      before do
+        click_button "Add to Basket"
+        visit basket_items_path
+      end
+
+      it { should have_selector('td', text: @item.name) }
+      it { should have_selector('td', text: '1') }
+      it { should have_selector('td', text: @item.price.to_s) }
+      it { should have_button('Checkout') }
+    end
   end
 
 end

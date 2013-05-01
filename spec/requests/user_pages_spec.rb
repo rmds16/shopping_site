@@ -7,7 +7,7 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_selector('h1', text: 'Register') }
+    it { should have_selector('h2', text: 'Register') }
     it { should have_selector('title', text: 'Register') }
   end
 
@@ -27,7 +27,7 @@ describe "User pages" do
         fill_in "Name", with: "Richard da Silva"
         fill_in "Email", with: "richard@da-silva.me.uk"
         fill_in "Password", with: "foobar"
-        fill_in "Password confirmation", with: "foobar"
+        fill_in "Confirm password", with: "foobar"
       end
 
       it "should create a user" do
@@ -51,7 +51,7 @@ describe "User pages" do
               fill_in "Password", with: "foobar"
               click_button "Login"
             end
-            it { should have_selector('title', text: 'Richard da Silva') }
+            it { should have_selector('title', text: 'All Items') }
           end
         end
       end
