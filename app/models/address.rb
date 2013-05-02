@@ -15,7 +15,19 @@ class Address < ActiveRecord::Base
   validates :post_code, presence: true, format: { with: VALIDATE_POST_CODE_REGEX }
   validates :town, presence: true
   validates :country, presence: true
+
   validates :phone, format: { with: VALIDATE_PHONE_REGEX, :allow_blank => true }
+
+  before_destroy :can_change?
+  before_update :can_change?
+
+  def can_change?
+    if self.orders.count.zero? and self.payments.count.zero?
+      return true
+    else
+      return false
+    end
+  end
 
 private
 

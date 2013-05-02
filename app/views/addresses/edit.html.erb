@@ -1,51 +1,31 @@
 <% provide(:title, 'Edit Address') %>
 
-<h1>Edit Address</h1>
-
-<%= form_for @address do |form| %>
-<p>
-<%= form.label :title %><br />
-<%= form.text_field :title %>
-</p>
-<p>
-<%= form.label :first_name %><br />
-<%= form.text_field :first_name %>
-</p>
-<p>
-<%= form.label :last_name %><br />
-<%= form.password_field :last_name %>
-</p>
-<p>
-<%= form.label :organisation %><br />
-<%= form.password_field :organisation %>
-</p>
-<p>
-<%= form.label :building %><br />
-<%= form.text_field :building %>
-</p>
-<p>
-<%= form.label :street %><br />
-<%= form.text_field :street %>
-</p>
-<p>
-<%= form.label :town %><br />
-<%= form.password_field :town %>
-</p>
-<p>
-<%= form.label :county %><br />
-<%= form.password_field :county %>
-</p>
-<p>
-<%= form.label :post_code %><br />
-<%= form.text_field :post_code %>
-</p>
-<p>
-<%= form.label :country %><br />
-<%= form.text_field :country %>
-</p>
-<p>
-<%= form.label :phone %><br />
-<%= form.password_field :phone %>
-</p>
-<%= form.submit "Edit Address" %> 
+<h2>Edit Address</h2>
+<div class="row">
+ <div class="span8 offset2">
+<%= render "shared/error_messages", :target => @address %>
+<%= form_for @address do |a| %>
+ <%= a.select(:title, options_for_select(['Mr','Miss','Mrs','Ms'])) %>
+ <%= a.label :first_name %>
+ <%= a.text_field :first_name %>
+ <%= a.label :last_name %>
+ <%= a.text_field :last_name %>
+ <%= a.label :organisation %>
+ <%= a.text_field :organisation %>
+ <%= a.label :building %>
+ <%= a.text_field :building %>
+ <%= a.label :street %>
+ <%= a.text_field :street %>
+ <%= a.label :town %>
+ <%= a.text_field :town %>
+ <%= a.label :county %>
+ <%= a.text_field :county %>
+ <%= a.label :post_code %>
+ <%= a.text_field :post_code %>
+ <%= a.label :country %>
+ <%= a.text_field :country %>
+ <br/><br/>
+ <%= a.submit "Edit Address", :class => "btn pull-right btn-primary"%>
 <% end %>
+</div>
+</div>

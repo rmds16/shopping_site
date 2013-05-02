@@ -14,7 +14,7 @@ class Ability
       order && order.user == user
     end
 
-    can [:update, :edit, :show, :destroy], Address do |address|
+    can [:index, :update, :edit, :show, :destroy], Address do |address|
       address && address.user == user
     end
   end

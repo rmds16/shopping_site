@@ -34,9 +34,6 @@ class AddressesController < ApplicationController
     if current_user
       @order = current_user.orders.new
       @addresses = current_user.addresses 
-      if @addresses.empty?
-        redirect_to new_address_path
-      end
     else
       redirect_to signin_path
     end
