@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessor :existing_address
   attr_accessible :address_id, :existing_address
   belongs_to :address
-  has_many :payments
+  has_one :payment
   belongs_to :user
   has_many :order_items
   accepts_nested_attributes_for :address

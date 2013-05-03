@@ -23,12 +23,13 @@ class Payment < ActiveRecord::Base
                                                             :year               => self.expiry_date.year,
                                                             :verification_value => self.verification_value
                                                            )
-      self.card_number = credit_card.display_number
       if credit_card.valid?
         response = GATEWAY.purchase(price_in_pence, credit_card)
         unless response.success?
           self.errors.add :base, "Card Declined"
+          return false
         end
+        self.card_number = credit_card.display_number
         self.order.stage = 1
         self.order.save
         response.success? 

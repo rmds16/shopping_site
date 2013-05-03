@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
       redirect_to orders_path
       return
     end
-    @payment = current_order.payments.new(params[:payment])
+    @payment = current_order.build_payment(params[:payment])
     if @payment.existing_address == "new"
       @address = Address.new(params[:address])
       @address.user = current_user
