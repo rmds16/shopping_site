@@ -1,8 +1,7 @@
 class BasketItemsController < ApplicationController
 
   def index
-    @basket_items = current_basket.basket_items
-    @basket = current_basket
+    @basket = BasketDecorator.decorate(current_basket)
   end
 
   def create

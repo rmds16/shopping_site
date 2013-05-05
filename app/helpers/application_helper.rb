@@ -8,4 +8,9 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+ 
+  def display_price(price)
+    number_to_currency(price, :unit => "&pound;", :separator => ".", :delimiter => "")
+  end
+
 end

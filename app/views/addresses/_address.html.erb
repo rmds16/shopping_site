@@ -1,13 +1,8 @@
-<li>
- <span class="content"><%= radio_button_tag "address_id", address.id %></span>
- <span class="content"><%= address.title %><%= address.first_name %><%= address.last_name %></span>
- <span class="content"><%= address.organisation %></span>
- <span class="content"><%= address.building %><%= address.street %></span>
- <span class="content"><%= address.town %></span>
- <span class="content"><%= address.county %></span>
- <span class="content"><%= address.post_code %></span>
- <span class="content"><%= address.country %></span>
- <span class="content"><%= address.phone %></span>
- <%= link_to "Edit", edit_address_path(address), :class => "btn pull-right", :method => :get %>
- <%= link_to "Delete", address_path(address), :class => "btn pull-right", :method => :delete %>
-</li>
+ <li><%= address.title %><%= address.first_name %><%= address.last_name %></span>
+ <li><%= address.organisation %></span>
+ <li><%= address.building %><%= address.street %></span>
+ <li><%= address.town %></span>
+ <li><%= address.county %></span>
+ <li><%= address.post_code %></span>
+ <li><%= address.country %></span>
+ <li><%= address.phone %></span>

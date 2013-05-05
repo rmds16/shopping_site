@@ -4,14 +4,7 @@
  <div class="span8 offset2">
   <% @addresses.each do |address| %>
    <ul class="address">
-    <li class="content"><%= address.title %> <%= address.first_name %><%= address.last_name %></li>
-    <li class="content"><%= address.organisation %></li>
-    <li class="content"><%= address.building %><%= address.street %></li>
-    <li class="content"><%= address.town %></li>
-    <li class="content"><%= address.county %></li>
-    <li class="content"><%= address.post_code %></li>
-    <li class="content"><%= address.country %></li>
-    <li class="content"><%= address.phone %></li>
+    <%= render 'address', :address => address %>
     <% if address.can_change? %>
     <li><%= link_to "Edit", edit_address_path(address), :class => "", :method => :get %>
         <%= link_to "Delete", address_path(address), :class => "", :method => :delete %></li>

@@ -1,3 +1,4 @@
+<% provide(:title, 'Basket') %>
 <h2>Basket</h2>
 
 <table class="basket" align="center">
@@ -8,25 +9,18 @@
     <th>Price</th>
     <th></th>
   </tr>
-<% @basket_items.each do |basket_item| %>
+<% @basket.basket_items.each do |basket_item| %>
   <tr>
     <td><%= basket_item.item.name %></td>
-    <td>£<%= sprintf("%0.2f", basket_item.item.price) %></td>
+    <td><%= display_price(basket_item.item.price) %></td>
     <td><%= basket_item.qty %></td>
-    <td>£<%= sprintf("%0.2f",basket_item.price) %></td>
+    <td><%= display_price(basket_item.price) %></td>
   </tr>
 <% end %>
   <tr>
    <td colspan="2"></td>
    <td>Total price:</td>
-   <td>£<%= sprintf("%0.2f", @basket.price) %></td>
+   <td><%= display_price(@basket.price) %></td>
   </tr>
-<% if @basket_items.count > 0 %>
-  <tr>
-   <td><br/></td>
-  </tr>
-  <tr>
-   <td colspan="3"></td>
-   <td><%= button_to "Checkout", new_order_path, :class => "btn pull-right btn-primary", :method => :get %>
-<% end %>
 </table>
+<%= @basket.continue %>
