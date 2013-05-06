@@ -43,6 +43,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @payment = current_order.payments.first
+    @payment = current_order.payment
   end
 end
