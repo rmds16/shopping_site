@@ -37,7 +37,7 @@ group :test do
   gem 'factory_girl_rails', '1.4.0'
 
   gem 'cucumber-rails', '1.2.1', require: false
-  gem 'database_cleaner', '0.7.0'
+  gem 'database_cleaner', '0.9.1'
   gem 'spork', '0.9.2'
 end
 

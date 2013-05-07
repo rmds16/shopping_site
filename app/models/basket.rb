@@ -11,6 +11,15 @@ class Basket < ActiveRecord::Base
     current_item
   end
 
+  def remove_item(current_item)
+    if current_item.qty == 1
+      current_item.destroy
+    else
+      current_item.qty -= 1
+      current_item.save
+    end
+  end
+
   def price
     total_price = 0
     basket_items.each do |basket_item|

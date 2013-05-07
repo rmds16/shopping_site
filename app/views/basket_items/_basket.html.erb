@@ -1,0 +1,25 @@
+<table class="table">
+  <tr>
+    <th>Item</th>
+    <th>Unit Price</th>
+    <th>Oty</th>
+    <th></th>
+    <th></th>
+    <th>Price</th>
+  </tr>
+<% @basket.basket_items.each do |basket_item| %>
+  <tr>
+    <td class="itemname"><%= basket_item.item.name %></td>
+    <td class="itemprice"><%= display_price(basket_item.item.price) %></td>
+    <td class="qty"><%= basket_item.qty %></td>
+    <td class="plus"><%= button_to '+' , basket_items_path(:item_id => basket_item.item), :class => "btn", :remote => true %></td>
+    <td class="minus"><%= button_to '-' , basket_item_path(basket_item), :class => "btn", :method => :delete, :remote => true %></td>
+    <td class="price"><%= display_price(basket_item.price) %></td>
+  </tr>
+<% end %>
+  <tr>
+   <td colspan="3"></td>
+   <td colspan="2">Total price:</td>
+   <td><%= display_price(@basket.price) %></td>
+  </tr>
+</table>

@@ -3,7 +3,7 @@ class BasketDecorator < Draper::Decorator
 
   def continue
     if model.basket_items.count > 0
-       h.button_to "Checkout", h.new_order_path, :class => "btn pull-right btn-primary", :method => :get
+       h.button_to "Checkout", h.new_order_path, :id=>"checkout", :class => "btn pull-right btn-primary", :method => :get
     end
   end
 

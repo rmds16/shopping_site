@@ -166,8 +166,27 @@ input, textarea, select, .uneditable-input {
 .basket {
   width: 600px;
   th, td {
-    text-align: right;
+    text-align: left;
+    .itemname {
+      width: 300px;
+    }
+    .itemprice {
+      width: 100px;
+    }
+    .qty {
+      width: 50px;
+    }
+    .plus, .minus {
+      width: 30px;
+    }
+    .price {
+      width: 90px;
+    }
   }
+}
+
+#checkout {
+  margin-bottom: 20px;
 }
 
 /* Order */

@@ -1,0 +1,4 @@
+$('#basket').html("<%= escape_javascript(render partial: "basket_items/basket", locals: {basket: @basket}) %>");
+<% if @basket.basket_items.count == 0 %>
+  $('#checkout').remove();
+<% end %>

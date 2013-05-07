@@ -1,26 +1,15 @@
 <% provide(:title, 'Basket') %>
 <h2>Basket</h2>
 
-<table class="basket" align="center">
-  <tr>
-    <th>Item</th>
-    <th>Unit Price</th>
-    <th>Oty</th>
-    <th>Price</th>
-    <th></th>
-  </tr>
-<% @basket.basket_items.each do |basket_item| %>
-  <tr>
-    <td><%= basket_item.item.name %></td>
-    <td><%= display_price(basket_item.item.price) %></td>
-    <td><%= basket_item.qty %></td>
-    <td><%= display_price(basket_item.price) %></td>
-  </tr>
-<% end %>
-  <tr>
-   <td colspan="2"></td>
-   <td>Total price:</td>
-   <td><%= display_price(@basket.price) %></td>
-  </tr>
+<table class="basket container">
+ <tr>
+  <td>
+   <div id="basket">
+    <%= render 'basket_items/basket' %>
+   </div>
+  </td>
+ </tr>
+ <tr>
+  <td><%= @basket.continue %></td>
+ </tr>
 </table>
-<%= @basket.continue %>
