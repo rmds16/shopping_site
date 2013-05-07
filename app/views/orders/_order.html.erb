@@ -7,7 +7,7 @@
     <th></th>
   </tr>
 
-<% current_order.order_items.each do |order_item| %>
+<% order.order_items.includes(:item).each do |order_item| %>
   <tr>
     <td><%= order_item.item.name %></td>
     <td>£<%= sprintf("%0.2f", order_item.item.price) %></td>
@@ -19,6 +19,6 @@
   <tr>
    <td colspan="2"></td>
    <td>Total price:</td>
-   <td>£<%= sprintf("%0.2f", current_order.price) %></td>
+   <td>£<%= sprintf("%0.2f", order.price) %></td>
   </tr>
  </table>

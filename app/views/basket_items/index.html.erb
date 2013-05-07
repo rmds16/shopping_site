@@ -7,9 +7,10 @@
    <div id="basket">
     <%= render 'basket_items/basket' %>
    </div>
-  </td>
+   <%= @basket.empty %>
+   <%= button_to 'Continue Shopping' , items_path, :class => "btn pull-right", :method=> :get %><br/><br/>
+   <%= @basket.continue %></td>
  </tr>
- <tr>
-  <td><%= @basket.continue %></td>
+</td>
  </tr>
 </table>

@@ -22,7 +22,7 @@ class Order < ActiveRecord::Base
 
   def price
     total_price = 0
-    order_items.each do |order_item|
+    order_items.includes(:item).each do |order_item|
       total_price += order_item.price
     end
     total_price
@@ -31,4 +31,13 @@ class Order < ActiveRecord::Base
   def price_in_pence
     price*100
   end
+
+  def item_qty
+    total_qty = 0
+    order_items.includes(:item).each do |order_item|
+      total_qty += order_item.qty
+    end
+    total_qty
+  end
+
 end

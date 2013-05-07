@@ -7,7 +7,7 @@
     <th></th>
     <th>Price</th>
   </tr>
-<% @basket.basket_items.each do |basket_item| %>
+<% @basket.basket_items.includes(:item).each do |basket_item| %>
   <tr>
     <td class="itemname"><%= basket_item.item.name %></td>
     <td class="itemprice"><%= display_price(basket_item.item.price) %></td>

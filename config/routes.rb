@@ -16,6 +16,8 @@ ShoppingSite::Application.routes.draw do
   match 'signin' => "user_sessions#new",      :as => :signin
   match 'signout' => "user_sessions#destroy", :as => :signout
 
+  match 'empty' => "baskets#destroy", :as => :empty
+
   resources :users 
   resource :user, :as => 'account'
 

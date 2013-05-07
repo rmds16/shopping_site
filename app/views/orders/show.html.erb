@@ -2,8 +2,8 @@
 
 <div class="row">
  <div class="span8 offset2">
-  <%= render 'order' %>
+  <%= render 'order', order: @order %>
   <br/>
-  <%= render 'payments/payment', payment: @payment %>
+  <%= render 'payments/payment', payment: @order.payment %>
  </div>
 </div>

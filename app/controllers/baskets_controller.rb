@@ -5,6 +5,8 @@ class BasketsController < ApplicationController
   end
 
   def destroy
+    current_basket.destroy
+    redirect_to root_path
   end
 
 end

@@ -4,7 +4,7 @@
 <div class="row">
  <div class="span8 offset2">
 
-  <%= render 'orders/order' %>
+  <%= render 'orders/order', order: current_order %>
 
   <br/>
   <div class="payment_section">
@@ -12,9 +12,9 @@
  <h5>Deliver to:</h5>
 
 <ul class="payment_address">
- <li class="content"><%= current_order.address.title %><%= current_order.address.first_name %><%= current_order.address.last_name %></li>
+ <li class="content"><%= current_order.address.title %> <%= current_order.address.first_name %> <%= current_order.address.last_name %></li>
  <li class="content"><%= current_order.address.organisation %></li>
- <li class="content"><%= current_order.address.building %><%= current_order.address.street %></li>
+ <li class="content"><%= current_order.address.building %> <%= current_order.address.street %></li>
  <li class="content"><%= current_order.address.town %></li>
  <li class="content"><%= current_order.address.county %></li>
  <li class="content"><%= current_order.address.post_code %></li>

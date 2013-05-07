@@ -43,6 +43,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @payment = current_order.payment
+    @order = Order.find(params[:id])
   end
 end

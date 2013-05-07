@@ -34,6 +34,7 @@ describe "BasketItems" do
       it { should have_button('+') }
       it { should have_button('-') }
       it { should have_button('Checkout') }
+      it { should have_button('Empty Basket') }
 
       describe "click the + button", :js => true do
         before do
@@ -71,6 +72,7 @@ describe "BasketItems" do
         it { should_not have_button('+') }
         it { should_not have_button('-') }
         it { should_not have_button('Checkout') }
+        it { should_not have_button('Empty Basket') }
       end
     end
   end

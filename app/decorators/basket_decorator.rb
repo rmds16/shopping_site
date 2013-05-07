@@ -7,6 +7,12 @@ class BasketDecorator < Draper::Decorator
     end
   end
 
+  def empty
+    if model.basket_items.count > 0
+       h.button_to "Empty Basket", h.empty_path, :id=>"emptybasket", :class => "btn btn-link btn-mini pull-left", :method => :delete
+    end
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
