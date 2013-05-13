@@ -20,10 +20,18 @@ class Basket < ActiveRecord::Base
     end
   end
 
+  def vat
+    vat = 0
+    basket_items.each do |basket_item|
+      vat += basket_item.price * 0.2
+    end
+    vat
+  end
+
   def price
     total_price = 0
     basket_items.each do |basket_item|
-      total_price += basket_item.price
+      total_price += basket_item.price * 1.2
     end
     total_price
   end

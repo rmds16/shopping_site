@@ -35,7 +35,7 @@
     <%= f.label :card_number %><br />
     <%= f.text_field :card_number, { :size => 16, :maxlength=>16 } %>
     <%= f.label :expiry_date %><br />
-    <%= f.date_select :expiry_date, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+    <%= f.date_select :expiry_date, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => false %>
     <%= f.label :verification_value, 'CVS' %><br />
     <%= f.text_field :verification_value, {:size => 3, :maxlength=>3} %>
    </div>

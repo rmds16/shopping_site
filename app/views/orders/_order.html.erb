@@ -10,15 +10,20 @@
 <% order.order_items.includes(:item).each do |order_item| %>
   <tr>
     <td><%= order_item.item.name %></td>
-    <td>£<%= sprintf("%0.2f", order_item.item.price) %></td>
+    <td><%= display_price order_item.item.price %></td>
     <td><%= order_item.qty %></td>
-    <td>£<%= sprintf("%0.2f", order_item.price) %></td>
+    <td><%= display_price order_item.price %></td>
   </tr>
 <% end %>
 
   <tr>
    <td colspan="2"></td>
+   <td>VAT:</td>
+   <td><%= display_price order.vat %></td>
+  </tr>
+  <tr>
+   <td colspan="2"></td>
    <td>Total price:</td>
-   <td>£<%= sprintf("%0.2f", order.price) %></td>
+   <td><%= display_price order.price %></td>
   </tr>
  </table>

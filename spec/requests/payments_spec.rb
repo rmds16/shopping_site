@@ -23,7 +23,7 @@ describe "Payments" do
       fill_in "Card number", with: "4111111111111111"
       select "Visa", :from => "payment[card_type]"
       select "2014", :from => "payment[expiry_date(1i)]"
-      select "4 - April", :from => "payment[expiry_date(2i)]"
+      select "April", :from => "payment[expiry_date(2i)]"
       fill_in "CVS", with: '111'
     end
 

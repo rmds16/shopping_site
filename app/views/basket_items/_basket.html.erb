@@ -19,6 +19,11 @@
 <% end %>
   <tr>
    <td colspan="3"></td>
+   <td colspan="2">VAT:</td>
+   <td><%= display_price(@basket.vat) %></td>
+  </tr>
+  <tr>
+   <td colspan="3"></td>
    <td colspan="2">Total price:</td>
    <td><%= display_price(@basket.price) %></td>
   </tr>

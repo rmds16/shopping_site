@@ -20,10 +20,18 @@ class Order < ActiveRecord::Base
     current_item
   end
 
+  def vat
+    vat = 0
+    order_items.each do |order_item|
+      vat += order_item.price * 0.2
+    end
+    vat
+  end
+
   def price
     total_price = 0
     order_items.includes(:item).each do |order_item|
-      total_price += order_item.price
+      total_price += order_item.price * 1.2
     end
     total_price
   end
