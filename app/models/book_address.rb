@@ -1,0 +1,2 @@
+class BookAddress < Address
+end

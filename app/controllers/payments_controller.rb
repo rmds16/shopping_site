@@ -4,8 +4,8 @@ class PaymentsController < ApplicationController
 
   def new 
     @payment = Payment.new(:existing_address => "existing")
-    @address = Address.new
-    @addresses = current_user.addresses
+    @address = BookAddress.new
+    @addresses = current_user.book_addresses
   end
 
   def create
@@ -15,30 +15,33 @@ class PaymentsController < ApplicationController
     end
     @payment = current_order.build_payment(params[:payment])
     if @payment.existing_address == "new"
-      @address = Address.new(params[:address])
+      @address = BookAddress.new(params[:address])
       @address.user = current_user
       if @address.save
-        @payment.address_id = @address.id
       else
-        @addresses = current_user.addresses
+        @addresses = current_user.book_addresses
         render 'new'
         return
       end
+    else
+      @address = BookAddress.find(@payment.billing_address_id)
     end
+    @billing_address = BillingAddress.create(@address.attributes.except('type','created_at','updated_at','id'))
+    @payment.billing_address = @billing_address
     if @payment.valid?
       if @payment.purchase current_order.price_in_pence
         unless @payment.save
-          @addresses = current_user.addresses
+          @addresses = current_user.book_addresses
           @address = @payment.address
           render 'new'
         end
       else
-        @addresses = current_user.addresses
+        @addresses = current_user.book_addresses
         @address = @payment.address
         render 'new'
       end
     else
-      @addresses = current_user.addresses
+      @addresses = current_user.book_addresses
       @address = @payment.address
       render 'new'
     end

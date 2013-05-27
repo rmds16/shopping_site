@@ -9,7 +9,7 @@ describe "Payments" do
     @basket_item = @basket.add_item(@item.id)
     visit signin_path
     sign_in user
-    @address = FactoryGirl.build(:address)
+    @address = FactoryGirl.build(:book_address)
     @address.user = user
     @address.save
     visit new_order_path
@@ -29,7 +29,7 @@ describe "Payments" do
 
     it { should have_field "payment_existing_address_existing" }
     it { should have_field "payment_existing_address_new" }
-    it { should have_field "payment_address_id" }
+    it { should have_field "payment_billing_address_id" }
 
     let(:submit) { "Process Payment" }
 
@@ -48,7 +48,7 @@ describe "Payments" do
       end
 
       subject { ->  { click_button submit } }
-      it { should change(Address, :count).by(1) }
+      it { should change(Address, :count).by(2) }
       it { should change(Payment, :count).by(1) }
     end
 

@@ -1,8 +1,6 @@
 class Address < ActiveRecord::Base
-  attr_accessible :user_id, :building, :city, :country, :county, :first_name, :last_name, :organisation, :phone, :post_code, :street, :title, :town
+  attr_accessible :user_id, :building, :city, :country, :county, :first_name, :last_name, :organisation, :phone, :post_code, :street, :title, :town, :type
   belongs_to :user
-  has_many :orders
-  has_many :payments
 
   VALIDATE_POST_CODE_REGEX= /\A[A-Z]{2}[0-9]{1,2}[\s]*[0-9]{1,2}[A-Z]{2}\z/i
   VALIDATE_PHONE_REGEX= /\A[0-9\+\s]+\z/i
@@ -17,17 +15,6 @@ class Address < ActiveRecord::Base
   validates :country, presence: true
 
   validates :phone, format: { with: VALIDATE_PHONE_REGEX, :allow_blank => true }
-
-  before_destroy :can_change?
-  before_update :can_change?
-
-  def can_change?
-    if self.orders.count.zero? and self.payments.count.zero?
-      return true
-    else
-      return false
-    end
-  end
 
 private
 

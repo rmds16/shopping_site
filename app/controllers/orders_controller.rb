@@ -4,27 +4,27 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @addresses = current_user.addresses
+    @addresses = current_user.book_addresses
     @order.existing_address = @addresses.size > 0 ? "existing" : "new"
-    @address = Address.new
+    @address = BookAddress.new
   end
 
   def create
     @order = current_user.orders.new(params[:order])
     if @order.existing_address == "existing"
-      @address = Address.find(params[:order][:address_id])
-      @order.address = @address
+     @address = BookAddress.find(params[:order][:delivery_address_id])
     else
-      @address = Address.new(params[:address])
+      @address = BookAddress.new(params[:address])
       @address.user = current_user
       if @address.save
-        @order.address = @address
       else
-        @addresses = current_user.addresses
+        @addresses = current_user.book_addresses
         render 'new'
         return 
       end
     end
+    @delivery_address = DeliveryAddress.create(@address.attributes.except('type','created_at','updated_at','id'))
+    @order.delivery_address = @delivery_address
     if @order.save
       session[:order_id] = @order.id
       current_basket.basket_items.each do |basket_item|
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
       current_basket.destroy
       redirect_to new_payment_path 
     else
-      @addresses = current_user.addresses
+      @addresses = current_user.book_addresses
       render 'new'
     end
   end

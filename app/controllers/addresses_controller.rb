@@ -1,15 +1,15 @@
 class AddressesController < ApplicationController
   load_and_authorize_resource
   def new
-    @address = Address.new
+    @address = BookAddress.new
   end
 
   def edit
-    @address = Address.find(params[:id]) 
+    @address = BookAddress.find(params[:id]) 
   end
 
   def update
-    @address = Address.find(params[:id])
+    @address = BookAddress.find(params[:id])
     if @address.update_attributes(params[:address])
       redirect_to addresses_path
     else
@@ -18,7 +18,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = current_user.addresses.build(params[:address])
+    @address = current_user.book_addresses.build(params[:address])
     if @address.save
       redirect_to addresses_path
     else
@@ -27,20 +27,19 @@ class AddressesController < ApplicationController
   end
 
   def show
-    @addresses = Address.find(params[:id])
+    @addresses = BookAddress.find(params[:id])
   end
 
   def index
     if current_user
-      @order = current_user.orders.new
-      @addresses = current_user.addresses 
+      @addresses = current_user.book_addresses 
     else
       redirect_to signin_path
     end
   end
 
   def destroy
-    address = Address.find(params[:id])
+    address = BookAddress.find(params[:id])
     address.destroy
     redirect_to addresses_path
   end

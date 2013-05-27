@@ -27,6 +27,51 @@ FactoryGirl.define do
     phone "07000000000"
   end
 
+  factory :book_address do
+    title "Mr"
+    sequence(:first_name) { |n| "First name #{n}" }
+    sequence(:last_name) { |n| "Last name #{n}" }
+    sequence(:organisation) { |n| "Organisation #{n}" }
+    sequence(:building) { |n| "Building #{n}" }
+    sequence(:street) { |n| "Street #{n}" }
+    sequence(:town) { |n| "Town #{n}" }
+    sequence(:city) { |n| "City #{n}" }
+    sequence(:county) { |n| "County #{n}" }
+    post_code "EX41 1PL"
+    sequence(:country) { |n| "Country #{n}" }
+    phone "07000000000"
+  end
+
+  factory :billing_address do
+    title "Mr"
+    sequence(:first_name) { |n| "First name #{n}" }
+    sequence(:last_name) { |n| "Last name #{n}" }
+    sequence(:organisation) { |n| "Organisation #{n}" }
+    sequence(:building) { |n| "Building #{n}" }
+    sequence(:street) { |n| "Street #{n}" }
+    sequence(:town) { |n| "Town #{n}" }
+    sequence(:city) { |n| "City #{n}" }
+    sequence(:county) { |n| "County #{n}" }
+    post_code "EX41 1PL"
+    sequence(:country) { |n| "Country #{n}" }
+    phone "07000000000"
+  end
+
+  factory :delivery_address do
+    title "Mr"
+    sequence(:first_name) { |n| "First name #{n}" }
+    sequence(:last_name) { |n| "Last name #{n}" }
+    sequence(:organisation) { |n| "Organisation #{n}" }
+    sequence(:building) { |n| "Building #{n}" }
+    sequence(:street) { |n| "Street #{n}" }
+    sequence(:town) { |n| "Town #{n}" }
+    sequence(:city) { |n| "City #{n}" }
+    sequence(:county) { |n| "County #{n}" }
+    post_code "EX41 1PL"
+    sequence(:country) { |n| "Country #{n}" }
+    phone "07000000000"
+  end
+
   factory :payment do
     card_type "visa"
     card_number "4111111111111111"

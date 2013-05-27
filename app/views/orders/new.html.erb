@@ -9,7 +9,7 @@
 
 <%= f.radio_button :existing_address, "existing", :onclick => "$('#new_address').hide()" %> Use existing address
 
-<%= f.collection_select(:address_id, @addresses, :id, :full_address) %>
+<%= f.collection_select(:delivery_address_id, @addresses, :id, :full_address) %>
 
 <%= f.radio_button :existing_address, "new", :onclick => "$('#new_address').show()" %> Add new address
 

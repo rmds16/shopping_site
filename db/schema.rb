@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418142704) do
+ActiveRecord::Schema.define(:version => 20130525213809) do
 
   create_table "addresses", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20130418142704) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "type"
   end
 
   create_table "basket_items", :force => true do |t|
@@ -61,11 +62,11 @@ ActiveRecord::Schema.define(:version => 20130418142704) do
   end
 
   create_table "orders", :force => true do |t|
-    t.integer  "address_id"
-    t.integer  "stage",      :default => 0
+    t.integer  "delivery_address_id"
+    t.integer  "stage",               :default => 0
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "payments", :force => true do |t|
@@ -73,9 +74,9 @@ ActiveRecord::Schema.define(:version => 20130418142704) do
     t.string   "card_type"
     t.string   "card_number"
     t.date     "expiry_date"
-    t.integer  "address_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "billing_address_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "user_sessions", :force => true do |t|

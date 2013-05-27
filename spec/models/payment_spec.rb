@@ -2,18 +2,20 @@ require 'spec_helper'
 
 describe Payment do
   before do
-    @address = FactoryGirl.build(:address)
+    @delivery_address = FactoryGirl.build(:delivery_address)
     @user = FactoryGirl.create(:user)
-    @address.user = @user
-    @address.save
-    @order = @user.orders.new
-    @order.address_id = @address.id
+    @delivery_address.user = @user
+    @delivery_address.save
+    @order = @user.orders.new(:delivery_address_id => @delivery_address.id)
     @order.save
     @item = FactoryGirl.create(:item)
     @order.add_item(@item.id)
     @order.save
+    @billing_address = FactoryGirl.build(:billing_address)
+    @billing_address.user = @user
+    @billing_address.save
     @payment = FactoryGirl.build(:payment)
-    @payment.address_id = @address.id
+    @payment.billing_address_id = @billing_address.id
     @payment.order_id = @order.id
     @payment.save
   end
@@ -24,7 +26,7 @@ describe Payment do
   it { should respond_to(:verification_value) }
   it { should respond_to(:card_type) }
   it { should respond_to(:expiry_date) }
-  it { should respond_to(:address_id) }
+  it { should respond_to(:billing_address_id) }
   it { should respond_to(:existing_address) }
 
   it { should be_valid }

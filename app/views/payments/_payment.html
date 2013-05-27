@@ -1,13 +1,13 @@
 <h5>Delivery Address:</h5>
-<ul class="payment_address">
- <li class="content"><%= payment.order.address.title %> <%= payment.order.address.first_name %> <%= payment.order.address.last_name %></li>
- <li class="content"><%= payment.order.address.organisation %></li>
- <li class="content"><%= payment.order.address.building %> <%= payment.order.address.street %></li>
- <li class="content"><%= payment.order.address.town %></li>
- <li class="content"><%= payment.order.address.county %></li>
- <li class="content"><%= payment.order.address.post_code %></li>
- <li class="content"><%= payment.order.address.country %></li>
- <li class="content"><%= payment.order.address.phone %></li>
+<ul class="payment_delivery_address">
+ <li class="content"><%= payment.order.delivery_address.title %> <%= payment.order.delivery_address.first_name %> <%= payment.order.delivery_address.last_name %></li>
+ <li class="content"><%= payment.order.delivery_address.organisation %></li>
+ <li class="content"><%= payment.order.delivery_address.building %> <%= payment.order.delivery_address.street %></li>
+ <li class="content"><%= payment.order.delivery_address.town %></li>
+ <li class="content"><%= payment.order.delivery_address.county %></li>
+ <li class="content"><%= payment.order.delivery_address.post_code %></li>
+ <li class="content"><%= payment.order.delivery_address.country %></li>
+ <li class="content"><%= payment.order.delivery_address.phone %></li>
 </ul>
 <br>
 <h5>Payment Details:</h5>
@@ -19,13 +19,13 @@
 </ul>
 <br>
 <h5>Billing Address:</h5>
-<ul class="payment_address">
- <li class="content"><%= payment.address.title %> <%= payment.address.first_name %> <%= payment.address.last_name %></li>
- <li class="content"><%= payment.address.organisation %></li>
- <li class="content"><%= payment.address.building %> <%= payment.address.street %></li>
- <li class="content"><%= payment.address.town %></li>
- <li class="content"><%= payment.address.county %></li>
- <li class="content"><%= payment.address.post_code %></li>
- <li class="content"><%= payment.address.country %></li>
- <li class="content"><%= payment.address.phone %></li>
+<ul class="payment_billing_address">
+ <li class="content"><%= payment.billing_address.title %> <%= payment.billing_address.first_name %> <%= payment.billing_address.last_name %></li>
+ <li class="content"><%= payment.billing_address.organisation %></li>
+ <li class="content"><%= payment.billing_address.building %> <%= payment.billing_address.street %></li>
+ <li class="content"><%= payment.billing_address.town %></li>
+ <li class="content"><%= payment.billing_address.county %></li>
+ <li class="content"><%= payment.billing_address.post_code %></li>
+ <li class="content"><%= payment.billing_address.country %></li>
+ <li class="content"><%= payment.billing_address.phone %></li>
 </ul>

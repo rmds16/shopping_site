@@ -20,7 +20,7 @@ describe "Order Page" do
 
       it { should_not have_field "order_existing_address_existing" }
       it { should_not have_field "order_existing_address_new" }
-      it { should_not have_field "order_address_id" }
+      it { should_not have_field "order_delivery_address_id" }
 
       describe "fill in address" do
         before do
@@ -37,7 +37,7 @@ describe "Order Page" do
 
         describe "should create an order with a new address" do
           subject { ->  { click_button submit } }
-          it { should change(Address, :count).by(1) }
+          it { should change(Address, :count).by(2) }
           it { should change(Order, :count).by(1) }
         end
       end
@@ -45,13 +45,13 @@ describe "Order Page" do
 
     describe "with stored addresses" do
       before do
-        @address = FactoryGirl.build(:address)
+        @address = FactoryGirl.build(:book_address)
         @address.user = user
         @address.save
         visit new_order_path
       end
 
-      it { should have_field "order_address_id" }
+      it { should have_field "order_delivery_address_id" }
       it { should have_selector "option", :id => '1' }
       it { should have_field "order_existing_address_new" }
       it { should have_field "order_existing_address_existing" }

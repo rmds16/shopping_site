@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
   attr_accessor :verification_value, :existing_address
-  attr_accessible :card_type, :expiry_date, :address_id, :card_number, :verification_value, :existing_address
-  belongs_to :address
+  attr_accessible :card_type, :expiry_date, :billing_address_id, :card_number, :verification_value, :existing_address
+  belongs_to :billing_address
   belongs_to :order
 
   validates :card_number, presence: true
@@ -15,8 +15,8 @@ class Payment < ActiveRecord::Base
       end
       # process payment
       credit_card = ActiveMerchant::Billing::CreditCard.new(
-                                                            :first_name         => self.address.first_name,
-                                                            :last_name          => self.address.last_name,
+                                                            :first_name         => self.billing_address.first_name,
+                                                            :last_name          => self.billing_address.last_name,
                                                             :number             => self.card_number,
                                                             :brand              => self.card_type,
                                                             :month              => self.expiry_date.month,

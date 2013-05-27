@@ -11,15 +11,15 @@
 
  <h5>Deliver to:</h5>
 
-<ul class="payment_address">
- <li class="content"><%= current_order.address.title %> <%= current_order.address.first_name %> <%= current_order.address.last_name %></li>
- <li class="content"><%= current_order.address.organisation %></li>
- <li class="content"><%= current_order.address.building %> <%= current_order.address.street %></li>
- <li class="content"><%= current_order.address.town %></li>
- <li class="content"><%= current_order.address.county %></li>
- <li class="content"><%= current_order.address.post_code %></li>
- <li class="content"><%= current_order.address.country %></li>
- <li class="content"><%= current_order.address.phone %></li>
+<ul class="payment_delivery_address">
+ <li class="content"><%= current_order.delivery_address.title %> <%= current_order.delivery_address.first_name %> <%= current_order.delivery_address.last_name %></li>
+ <li class="content"><%= current_order.delivery_address.organisation %></li>
+ <li class="content"><%= current_order.delivery_address.building %> <%= current_order.delivery_address.street %></li>
+ <li class="content"><%= current_order.delivery_address.town %></li>
+ <li class="content"><%= current_order.delivery_address.county %></li>
+ <li class="content"><%= current_order.delivery_address.post_code %></li>
+ <li class="content"><%= current_order.delivery_address.country %></li>
+ <li class="content"><%= current_order.delivery_address.phone %></li>
 </ul>
 
   </div>
@@ -46,7 +46,7 @@
 
   <%= f.radio_button :existing_address, "existing", :onclick => "$('#new_address').hide()" %> Use existing address
 
-  <%= f.collection_select(:address_id, @addresses, :id, :full_address) %>
+  <%= f.collection_select(:billing_address_id, @addresses, :id, :full_address) %>
 
   <%= f.radio_button :existing_address, "new", :onclick => "$('#new_address').show()" %> Add new address
 
@@ -59,7 +59,7 @@
     <%= a.label :last_name %><br />
     <%= a.text_field :last_name %>
     <%= a.label :organisation %><br />
-    <%= a.password_field :organisation %>
+    <%= a.text_field :organisation %>
     <%= a.label :building %><br />
     <%= a.text_field :building %>
     <%= a.label :street %><br />

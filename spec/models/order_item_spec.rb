@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe OrderItem do
   before do
-    @address = FactoryGirl.build(:address)
+    @address = FactoryGirl.build(:delivery_address)
     @user = FactoryGirl.create(:user)
     @address.user = @user
     @address.save
     @order = @user.orders.new
-    @order.address_id = @address.id
+    @order.delivery_address_id = @address.id
     @order.save
     @item = FactoryGirl.create(:item)
     @order_item = @order.add_item(@item.id)
